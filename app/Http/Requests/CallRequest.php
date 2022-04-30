@@ -18,6 +18,14 @@ class CallRequest extends FormRequest
         return [
             'category' => 'required',
             'subcategory' => 'required',
+            'user_id' => '',
+            'user_type' => '',
+            'admin_id' => '',
+            'order_id' => '',
+            'category' => '',
+            'subcategory' => '',
+            'description' => ''
+
         ];
     }
 

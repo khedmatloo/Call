@@ -9,9 +9,9 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\CallRepository;
 
-class CallStoreJob implements ShouldQueue
+class CallStoreJob
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, SerializesModels;
 
     private $input;
     public function __construct($input)
@@ -20,8 +20,8 @@ class CallStoreJob implements ShouldQueue
     }
 
 
-    public function handle()
+    public function handle(CallRepository $callRepository)
     {
-        return CallRepository::store($this->input);
+        return $callRepository->store($this->input);
     }
 }

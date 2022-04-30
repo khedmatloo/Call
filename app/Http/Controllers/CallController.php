@@ -5,16 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CallRequest;
 use App\Models\Call;
 use App\Jobs\CallStoreJob;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class CallController extends Controller
 {
     public function store(CallRequest $request)
     {
-        CallStoreJob::dispatch($request->all());
-        echo json_encode($request->user_id);
-        $content = ['message' => 'تماس با موفقیت ثبت شد',];
-        return response()->json($content, 200);
+        $inputs = $request->validated();
+        $inputs['admin_id'] = Auth::user()->id;
+        $call = CallStoreJob::dispatchSync($inputs);
+
+        return response()->json(['message' => 'تماس با موفقیت ثبت شد', 'data' => $call], 200);
     }
 
     public function index()
