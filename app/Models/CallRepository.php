@@ -15,8 +15,7 @@ class CallRepository
 
     public function index()
     {
-        $calls = Call::with('comments')->get();
-        return $calls;
+        return Call::with('comments')->simplePaginate(5);
     }
 
     public function show($data)

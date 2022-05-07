@@ -18,7 +18,7 @@ class CallController extends Controller
         $inputs['admin_id'] = Auth::user()->id;
         $call = CallStoreJob::dispatchSync($inputs);
 
-        return response()->json(['message' => 'تماس با موفقیت ثبت شد', 'data' => $call], 201);
+        return response()->json(['message' => __('messages.call.success'), 'data' => $call], 201);
     }
 
     public function index()

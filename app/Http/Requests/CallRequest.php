@@ -22,8 +22,6 @@ class CallRequest extends FormRequest
             'user_type' => '',
             'admin_id' => '',
             'order_id' => '',
-            'category' => '',
-            'subcategory' => '',
             'description' => ''
 
         ];
@@ -32,8 +30,8 @@ class CallRequest extends FormRequest
     public function messages()
     {
         return [
-            'category.required' => 'موضوع انتخاب نشده است.',
-            'subcategory.required' => 'زیرموضوع انتخاب نشده است.'
+            // 'category.required' => 'موضوع انتخاب نشده است.',
+            // 'subcategory.required' => 'زیرموضوع انتخاب نشده است.'
         ];
     }
 }

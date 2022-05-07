@@ -19,8 +19,9 @@ use App\Http\Controllers\CommentController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::get('/call', [CallController::class, 'index'])->middleware('auth:sanctum');
-Route::post('/call', [CallController::class, 'store'])->middleware('auth:sanctum');
-Route::get('/call/{id}', [CallController::class, 'show'])->middleware('auth:sanctum');
-Route::post('/comment', [CommentController::class, 'store'])->middleware('auth:sanctum');
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/call', [CallController::class, 'index']);
+    Route::post('/call', [CallController::class, 'store']);
+    Route::get('/call/{id}', [CallController::class, 'show']);
+    Route::post('/comment', [CommentController::class, 'store']);
+});
