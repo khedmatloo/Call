@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CallRequest;
+use App\Jobs\CallIndexJob;
 use App\Models\Call;
 use App\Jobs\CallStoreJob;
 use Illuminate\Support\Facades\Auth;
@@ -17,12 +18,13 @@ class CallController extends Controller
         $inputs['admin_id'] = Auth::user()->id;
         $call = CallStoreJob::dispatchSync($inputs);
 
-        return response()->json(['message' => 'تماس با موفقیت ثبت شد', 'data' => $call], 200);
+        return response()->json(['message' => 'تماس با موفقیت ثبت شد', 'data' => $call], 201);
     }
 
     public function index()
     {
-        return Call::all();
+        $calls = CallIndexJob::dispatchSync();
+        return response()->json(['message' => 'عملیات با موفقیت انجام شد', 'data' => $calls], 200);
     }
 
     public function show($data)

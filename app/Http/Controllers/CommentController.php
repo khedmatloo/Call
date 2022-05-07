@@ -2,9 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CommentRequest;
+use App\Jobs\CommentStoreJob;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    //
+    public function store(CommentRequest $request)
+    {
+        $input = $request->validated();
+        $input['admin_id'] = Auth::user()->id;
+        $comment = CommentStoreJob::dispatchSync($input);
+
+        return response()->json(['message' => 'کامنت با موفقیت ثبت شد.', 'data' => $comment], 201);
+    }
 }

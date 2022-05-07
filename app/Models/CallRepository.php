@@ -3,9 +3,7 @@
 namespace App\Models;
 
 use App\Models\Call;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+
 
 class CallRepository
 {
@@ -17,7 +15,8 @@ class CallRepository
 
     public function index()
     {
-        return Call::all();
+        $calls = Call::with('comments')->get();
+        return $calls;
     }
 
     public function show($data)

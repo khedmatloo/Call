@@ -23,4 +23,9 @@ class Call extends Model
         'subcategory',
         'description',
     ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
