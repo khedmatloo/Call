@@ -24,17 +24,9 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => '',
-            'call_id' => 'required',
-            'admin_id' => '',
-            'order_id' => '',
+            'commentable_type' => 'required',
+            'commentable_id' => 'required',
             'description' => ''
-        ];
-    }
-    public function messages()
-    {
-        return [
-            'call_id.required' => 'کامنت باید به یک تماس مرتبط باشد'
         ];
     }
 }

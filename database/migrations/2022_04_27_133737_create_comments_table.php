@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('call_id');
+            $table->string('commentable_type');
+            $table->integer('commentable_id');
             $table->integer('admin_id');
-            $table->integer('order_id');
             $table->text('description');
             $table->timestamps();
             $table->softDeletes();

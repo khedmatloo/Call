@@ -11,9 +11,14 @@ class Comment extends Model
 
     protected $fillable = [
         'user_id',
-        'call_id',
+        'commentable_id',
+        'commentable_type',
         'admin_id',
-        'order_id',
         'description',
     ];
+
+    public function commentable()
+    {
+        return $this->morphTo();
+    }
 }

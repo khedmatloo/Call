@@ -14,6 +14,6 @@ class CommentController extends Controller
         $input['admin_id'] = Auth::user()->id;
         $comment = CommentStoreJob::dispatchSync($input);
 
-        return response()->json(['message' => 'کامنت با موفقیت ثبت شد.', 'data' => $comment], 201);
+        return response()->json(['message' => __('messages.comment.success_store'), 'data' => $comment], 201);
     }
 }

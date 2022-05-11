@@ -26,12 +26,4 @@ class CallRequest extends FormRequest
 
         ];
     }
-
-    public function messages()
-    {
-        return [
-            // 'category.required' => 'موضوع انتخاب نشده است.',
-            // 'subcategory.required' => 'زیرموضوع انتخاب نشده است.'
-        ];
-    }
 }
