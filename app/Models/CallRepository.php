@@ -15,8 +15,10 @@ class CallRepository
 
     public function index()
     {
-        return Call::with('comments')->simplePaginate(5);
+
+        return  Call::with('comments')->simplePaginate(5);
     }
+
 
     public function show($data)
     {
