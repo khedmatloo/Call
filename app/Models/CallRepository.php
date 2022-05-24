@@ -2,25 +2,27 @@
 
 namespace App\Models;
 
+use App\Models\Base\BaseRepository;
 use App\Models\Call;
+use Illuminate\Support\Arr;
 
 
-class CallRepository
+class CallRepository extends BaseRepository
 {
-
-    public function store($input)
+    public function __construct()
     {
-        return Call::create($input);
+        parent::__construct(Call::class);
     }
-
-    public function index()
+    public function addWhereToGetAll($query, $params)
     {
-
-        return  Call::with('comments')->simplePaginate(5);
-    }
-
-
-    public function show($data)
-    {
+        if (Arr::get($params, 'inputs')) {
+            if (Arr::has($params['inputs'], 'order_id')) {
+                $query = $query->where('order_id', $params['inputs']['order_id']);
+            }
+            if (Arr::has($params['inputs'], 'user_id')) {
+                $query = $query->where('user_id', $params['inputs']['user_id']);
+            }
+        } //end if
+        return $query;
     }
 }

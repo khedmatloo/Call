@@ -5,6 +5,7 @@ namespace App\Jobs;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\CallRepository;
+use App\Exceptions\Calls\InvalidOrderException;
 
 class CallStoreJob
 {
@@ -19,6 +20,6 @@ class CallStoreJob
 
     public function handle(CallRepository $callRepository)
     {
-        return $callRepository->store($this->input);
+        return $callRepository->create(['data' => $this->input]);
     }
 }

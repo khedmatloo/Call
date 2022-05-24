@@ -4,6 +4,7 @@ use App\Http\Controllers\CallController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/call', [CallController::class, 'index']);
     Route::post('/call', [CallController::class, 'store']);
-    Route::get('/call/{id}', [CallController::class, 'show']);
+    Route::delete('/call/{id}', [CallController::class, 'delete']);
     Route::post('/comment', [CommentController::class, 'store']);
+    Route::delete('/comment/{id}', [CommentController::class, 'delete']);
+    Route::get('/categories', [CategoryController::class, 'index']);
 });

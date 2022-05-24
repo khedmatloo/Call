@@ -24,6 +24,6 @@ class CommentStoreJob implements ShouldQueue
      */
     public function handle(CommentRepository $commentRepository)
     {
-        return $commentRepository->store($this->input);
+        return $commentRepository->create(['data' => $this->input]);
     }
 }
