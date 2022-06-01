@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\LogEvent;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\CallRepository;
@@ -20,6 +21,9 @@ class CallStoreJob
 
     public function handle(CallRepository $callRepository)
     {
-        return $callRepository->create(['data' => $this->input]);
+
+        $result = $callRepository->create(['data' => $this->input]);
+        event(new LogEvent($this->input));
+        return $result;
     }
 }
